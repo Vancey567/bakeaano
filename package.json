@@ -1,0 +1,19 @@
+{
+  "name": "bakeaano",
+  "version": "1.0.0",
+  "description": "A Webapp for baking workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vancey567/bakeaano.git"
+  },
+  "author": "Jay Mishra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vancey567/bakeaano/issues"
+  },
+  "homepage": "https://github.com/Vancey567/bakeaano#readme"
+}
