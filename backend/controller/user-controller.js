@@ -24,11 +24,11 @@ function userController() {
                                  if(err === null) {
                                     // localStorage.setItem("user", user.id);
                                     // sessionStorage.setItem("user", token);
-                                    res.cookie("usertoken", token, {
-                                        maxAge: 1000 * 60 * 60 * 24 * 30, 
-                                        httpOnly: true,
-                                    })
-                                    res.send({message: "Welcome User", token: token});
+                                    // res.cookie("usertoken", token, {
+                                    //     maxAge: 1000 * 60 * 60 * 24 * 30, 
+                                    //     httpOnly: true,
+                                    // })
+                                    res.send({ message: "Welcome User", token: token });
                                  }
                              })
                         } else {
@@ -101,23 +101,6 @@ function userController() {
             return res.redirect('/login');
         },
 
-        async verifyTokenMiddleware(req, res, next) {
-            if(req.headers.authorization !== undefined) { 
-                let token = req.headers.authorization.split(" ")[1]; 
-                // Verify the token
-                jwt.verify(token, "secretkey", (err, userCred) => { 
-                    console.log(err);
-                    if(err === null) {
-                        console.log(token);
-                        next();
-                    } else { 
-                        res.status(401).send({message: "Invalid Token"});
-                    }
-                })
-            } else {
-                res.status(403).send({ message: "Please authenticate yourself"});
-            }
-        }
     }
 }
 

@@ -5,7 +5,7 @@ function workshop() {
     return {
         async register(req, res) {
             // Check who is loggedIn from cookie, then click on the workshop and link the user, store in attendees
-            
+
             res.json({ message: 'registered for workshop' });
         },
 
@@ -54,8 +54,6 @@ function workshop() {
                 res.json({ message: "No attendese available"});
             }
         },
-
-
     }
 }
 
