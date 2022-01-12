@@ -6,10 +6,10 @@ function userController() {
     return {
         async login(req, res) {
             const { email, password } = req.body;
-
+            console.log(req.body);
+            
             if(!email, !password) {
-                res.json({ message: 'All fields are mandatory' });
-                return;
+                return res.json({ message: 'All fields are mandatory' });
             }
 
             Users.findOne({ email: email }, (err, user) => {
@@ -29,7 +29,9 @@ function userController() {
                                     //     maxAge: 1000 * 60 * 60 * 24 * 30, 
                                     //     httpOnly: true,
                                     // })
+                                    // return res.redirect({ message: "Welcome User", token: token })
                                     res.send({ message: "Welcome User", token: token });
+                                    return res.redirect('/');
                                  }
                              })
                         } else {
