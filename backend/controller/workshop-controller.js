@@ -5,7 +5,8 @@ function workshop() {
     return {
         async register(req, res) {
             // Check who is loggedIn from cookie, then click on the workshop and link the user, store in attendees
-
+            const userId = localStorage.getItem("userId");
+            const workshopId = localStorage.getItem("workshopId");
             res.json({ message: 'registered for workshop' });
         },
 
@@ -22,7 +23,7 @@ function workshop() {
         async createWorkshop(req, res) {
             const { title, description, mode, address, date, duration,  learnings } = req.body;
 
-            if(!title || !description || !mode || !address || !date || !duration || !learnings) {
+            if(!title || !description || !date || !duration || !learnings) {
                 res.json({ message: 'All fields are mandatory' });
                 return;
             }

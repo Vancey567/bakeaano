@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 const bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
+const expressLayout = require('express-ejs-layouts');
  
 
 const PORT = process.env.PORT || 3000;
@@ -25,6 +27,12 @@ app.use(routes);
 app.use((req, res, next) => {
     res.send('<h1> Error:404, Page not found </h1>');
  });
+
+
+// Template Engine
+app.use(expressLayout)
+app.set('views', path.join(__dirname, '../frontend/views'));
+app.set('view engine', 'ejs');
 
 
 

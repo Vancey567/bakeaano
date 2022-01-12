@@ -21,6 +21,7 @@ function userController() {
                     bcryptjs.compare(password, user.password, (err, status) => {
                         if(status === true) { // Correct password
                              jwt.sign(password, "secretkey", (err, token) => {
+                            //  jwt.sign(user, "secretkey", (err, token) => {
                                  if(err === null) {
                                     // localStorage.setItem("user", user.id);
                                     // sessionStorage.setItem("user", token);
@@ -48,8 +49,12 @@ function userController() {
             })
         },
 
+        async getloginPage(req, res) {
+            return res.render('login')
+        },
+
         async register(req, res) {
-            let { name, gender, email, phone, dob, address, password } = req.body; 
+            let { name, gender, role, email, phone, dob, address, password } = req.body; 
 
             if(!name || !gender || !email || !phone || !dob || !address || !password) {
                 res.json({ message: 'All fields are mandatory' });
@@ -70,6 +75,7 @@ function userController() {
                                 let userObj = new Users({
                                     name: name,
                                     gender: gender,
+                                    role: role,
                                     email: email,
                                     phone: phone,
                                     dob: dob,
@@ -93,6 +99,10 @@ function userController() {
                     res.json({message: "User already registered, Please login!!!"});
                 }
             })
+        },
+
+        async getregisterPage(req, res) {
+            return res.render('register.ejs')
         },
 
         async logout(req, res) {
